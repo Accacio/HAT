@@ -12,6 +12,6 @@ Created in 2013 by:
 
 * [Jean Américo](https://github.com/jamerico)
 
-* Philipe Moura
+* [Philipe Moura](https://github.com/mouraphilipe)
 
 * [Rafael Accácio Nogueira](https://github.com/Accacio)
