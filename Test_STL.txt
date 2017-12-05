@@ -1,0 +1,63 @@
+
+#include <string.h>
+
+#include <iostream>
+
+#include <map>
+
+#include <utility>
+
+#include <fstream>
+
+using namespace std;
+
+int main()
+
+{
+
+   map<int, string> Frequences;
+
+
+
+   // 1) Assignment using array index notation
+
+   Frequences[12000] = "50 years";
+
+   Frequences[15000] = "40 year";
+
+   Frequences[16000] = "30 years";
+
+   Frequences[17000] = "24 years";
+
+   Frequences[18000] = "24 years";
+
+   Frequences [19000] = "20 years";
+
+   Frequences [20000] = "only heard by children";
+
+   Frequences [22000] = "only heard by children";
+
+   cout << "Frequences[12000]=" << Frequences[12000] << endl << endl;
+
+
+
+   ofstream STL_LOG;
+
+   const char* fname = "STL_LOG.txt";
+   STL_LOG.open (fname);
+   if (!STL_LOG) {
+   cout << "File " << fname << " not open";
+   return 0;
+}
+
+
+   for( map<int,string>::iterator ii=Frequences.begin(); ii!=Frequences.end(); ++ii)
+
+   {
+
+       cout << (*ii).first << " HZ: >" << (*ii).second << endl;
+       STL_LOG << (*ii).first << " HZ: >" << (*ii).second << endl;
+
+   }
+
+}

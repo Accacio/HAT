@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/new/icons">
+        <file>Yes.png</file>
+        <file>No.png</file>
+    </qresource>
+</RCC>
