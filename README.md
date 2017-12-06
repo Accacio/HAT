@@ -8,7 +8,7 @@ Created in 2013 by:
 
 * [Gabriel Pelielo](https://github.com/Pelielo)
 
-* Gabriel Premoli Monteiro
+* [Gabriel Premoli Monteiro](https://github.com/gabrielpremoli)
 
 * [Jean Américo](https://github.com/jamerico)
 
