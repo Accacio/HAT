@@ -9,7 +9,7 @@
 #include <sstream>
 #include <QString>
 
-using namespace std;
+
 
 
 HAT::HAT(QWidget *parent) :
@@ -32,8 +32,8 @@ HAT::~HAT()
 
 int lastfrequency;
 
-vector <vector <int> > tabela;
-vector <vector <string> > mylog;
+std::vector <std::vector <int> > tabela;
+std::vector <std::vector <std::string> > mylog;
 
 int counter = 0;
 int a;
@@ -42,17 +42,17 @@ int a;
 
 
 
-void writeinmylog(string frequency, string situation){
-    vector <string> m;
+void writeinmylog(std::string frequency, std::string situation){
+    std::vector <std::string> m;
     mylog.push_back(m);
     mylog[counter].push_back(frequency);
     mylog[counter].push_back(situation);
-    cout << "prestar atenção" << mylog[counter][0] << mylog[counter][1] << endl; //only a debbug
+    std::cout << "prestar atenção" << mylog[counter][0] << mylog[counter][1] << std::endl; //only a debbug
     counter++;
 }
 
 QString getresult(){
-    string heardfrequency;
+    std::string heardfrequency;
     int age;
 
    for(int start = 0; true; start++) //search in vector mylog
@@ -71,20 +71,20 @@ QString getresult(){
        }
 
     }
-string temp;
-stringstream t2;
+std::string temp;
+std::stringstream t2;
 t2 << age;
 
 temp = "Your last frequency heard is  ";
 temp+= heardfrequency;
 temp +="/n";
 temp+="So, your estimated age is:";
-string t3;
+std::string t3;
 t3 = t2.str();
 temp+=t3;
 QString results;
 results=QString::fromStdString(temp);
-cout << temp;
+std::cout << temp;
 
    //cout << "Your last frequency heard is  " << heardfrequency << "  So, your estimated age is:" << age <<" years old" << endl;
    return results;
@@ -92,22 +92,22 @@ cout << temp;
 
 void getmylog(){
      //do it only in the final of test
-    ofstream mylogtxt;
+    std::ofstream mylogtxt;
     const char* name = "Log";
     mylogtxt.open(name);
     if (mylogtxt.is_open()){
 
-        cout << "log is OK" << endl;
+        std::cout << "log is OK" << std::endl;
     }
-    stringstream st; //converting lastfrequency (int) to string lastfrequencystr (string)
+    std::stringstream st; //converting lastfrequency (int) to string lastfrequencystr (string)
     st << lastfrequency;
-    string lastfrequencystr = st.str();
-    mylogtxt << "frequency " << "Heard" << endl; //Notes on the top
+    std::string lastfrequencystr = st.str();
+    mylogtxt << "frequency " << "Heard" << std::endl; //Notes on the top
 
     for(int b = 0; mylog[b][0] <= lastfrequencystr; b++){ //we only can compare string with string
 
-        mylogtxt << mylog[b][0] << "     " << mylog[b][1] << endl;
-        cout << "frequency is" << mylog[b][0] << "hear" << mylog[b][1] << endl; //debbug
+        mylogtxt << mylog[b][0] << "     " << mylog[b][1] << std::endl;
+        std::cout << "frequency is" << mylog[b][0] << "hear" << mylog[b][1] << std::endl; //debbug
         if (mylog[b][0] == lastfrequencystr){ //break ate the end of file
             break;
         }
@@ -135,8 +135,8 @@ void gettable()
 
     int col1;
     int col2;
-    vector <int> m;
-    ifstream myfile;
+    std::vector <int> m;
+    std::ifstream myfile;
     myfile.open("./TableTest.conf");
     if (myfile.is_open())
     {
@@ -152,10 +152,10 @@ void gettable()
         tabela[i].push_back(col1);
         myfile >> col2;
         tabela[i].push_back(col2);
-        cout << tabela[i][0]<< " "<< tabela[i][1] << endl;
+        std::cout << tabela[i][0]<< " "<< tabela[i][1] << std::endl;
         }
      }
-    //cout << tabela.size();
+    std::cout << tabela.size();
 }
 
 
@@ -163,9 +163,9 @@ void gettable()
 
 void HAT::on_Yes_clicked()
 {
-    stringstream ss;
+    std::stringstream ss;
     ss << tabela[a-1][0];
-    string myfrequency = ss.str(); //converting int to string
+    std::string myfrequency = ss.str(); //converting int to string
     //cout << "agora" << myfrequency << endl; //only a debbug
     writeinmylog(myfrequency,"Yes"); //writing in vector log
 
@@ -201,9 +201,9 @@ void HAT::on_Yes_clicked()
 
 void HAT::on_No_clicked()
 {
-    stringstream ss;
+    std::stringstream ss;
     ss << tabela[a-1][0];
-    string myfrequency = ss.str(); //converting int to string
+    std::string myfrequency = ss.str(); //converting int to string
     writeinmylog(myfrequency,"No"); //writing in vector log
 
     SDL_Delay(700);
