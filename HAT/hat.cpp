@@ -9,9 +9,6 @@
 #include <sstream>
 #include <QString>
 
-
-
-
 HAT::HAT(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::HAT)
@@ -29,20 +26,7 @@ HAT::~HAT()
     delete ui;
 }
 
-
-int lastfrequency;
-
-std::vector <std::vector <int> > tabela;
-std::vector <std::vector <std::string> > mylog;
-
-int counter = 0;
-int a;
-
-
-
-
-
-void writeinmylog(std::string frequency, std::string situation){
+void HAT::writeinmylog(std::string frequency, std::string situation){
     std::vector <std::string> m;
     mylog.push_back(m);
     mylog[counter].push_back(frequency);
@@ -51,22 +35,33 @@ void writeinmylog(std::string frequency, std::string situation){
     counter++;
 }
 
-QString getresult(){
+QString HAT::getresult(){
     std::string heardfrequency;
     int age;
 
-   for(int start = 0; true; start++) //search in vector mylog
+   for(int start = 0; start<mylog.size(); start++) //search in vector mylog
    {
-       if (mylog[start][1] == "No"){ //It will stop when founds the first "No" in Log
-           if (start!=0){ //Avoiding bugs
+       std::string temp= mylog[start][1];
+       if (mylog[start][1] == "No")
+       { //It will stop when founds the first "No" in Log
+           if (start!=0)
+           { //Avoiding bugs
            heardfrequency = mylog[(start-1)][0]; //Save the lastfrequency heard
            age = tabela[(start-1)][1]; //Save the estimated age based in Table
            break;
-        }
-        else {
+           }
+           else
+           {
                heardfrequency = mylog[start][0];
                age = tabela[start][1];
            }
+
+       }
+       else
+       {
+
+           heardfrequency = mylog[start][0];
+           age = tabela[start][1];
 
        }
 
@@ -75,10 +70,10 @@ std::string temp;
 std::stringstream t2;
 t2 << age;
 
-temp = "Your last frequency heard is  ";
+temp = "Your last heard frequency  was: ";
 temp+= heardfrequency;
-temp +="/n";
-temp+="So, your estimated age is:";
+temp +="\n";
+temp+="So, your estimated age is: ";
 std::string t3;
 t3 = t2.str();
 temp+=t3;
@@ -90,7 +85,7 @@ std::cout << temp;
    return results;
 }
 
-void getmylog(){
+void HAT::getmylog(){
      //do it only in the final of test
     std::ofstream mylogtxt;
     const char* name = "Log";
@@ -121,7 +116,7 @@ void getmylog(){
 
 
 
-int count()
+int HAT::count()
 {
     a++;
 
@@ -130,7 +125,7 @@ int count()
 
 
 
-void gettable()
+void HAT::gettable()
 {
 
     int col1;
@@ -171,11 +166,12 @@ void HAT::on_Yes_clicked()
 
     SDL_Delay(700);
     int duration = 500;
-    if((a+1)==tabela.size())
+    if((a+1)==((int)tabela.size()))
     {
         getmylog();
-        HAT::ui->label->setGeometry(80,130,250,35);
+        HAT::ui->label->setGeometry(30,90,300,50);
         HAT::ui->progressBar->setValue(100);
+        HAT::ui->label->setWordWrap(true);
         HAT::ui->label->setText(getresult());
         HAT::ui->Yes->hide();
         HAT::ui->No->hide();
@@ -196,9 +192,6 @@ void HAT::on_Yes_clicked()
 //        cout << "the lastfrequency is" << lastfrequency << endl;
     }
 
-
-
-
 void HAT::on_No_clicked()
 {
     std::stringstream ss;
@@ -208,11 +201,12 @@ void HAT::on_No_clicked()
 
     SDL_Delay(700);
     int duration = 500;
-    if((a+1)==tabela.size())
+    if((a+1)==((int) tabela.size()))
     {
         getmylog();
-        HAT::ui->label->setGeometry(80,130,250,35);
+        HAT::ui->label->setGeometry(30,90,300,50);
         HAT::ui->progressBar->setValue(100);
+        HAT::ui->label->setWordWrap(true);
         HAT::ui->label->setText(getresult());
         HAT::ui->Yes->hide();
         HAT::ui->No->hide();
@@ -231,10 +225,6 @@ void HAT::on_No_clicked()
 //        getmylog();
 //        cout << "the lastfrequency is" << lastfrequency << endl;
 //    }
-
-
-
-
 }
 
 void HAT::on_pegatabel_clicked()
