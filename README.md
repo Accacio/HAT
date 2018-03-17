@@ -15,3 +15,6 @@ Created in 2013 by:
 * [Philipe Moura](https://github.com/mouraphilipe)
 
 * [Rafael Accácio Nogueira](https://github.com/Accacio)
+
+---
+N.B.: Include 'TableTest.conf' inside binary folder, so the program will have a table to read.

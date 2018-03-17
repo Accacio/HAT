@@ -32,6 +32,20 @@ private slots:
 
 private:
     Ui::HAT *ui;
+    int lastfrequency;
+
+    std::vector <std::vector <int> > tabela;
+    std::vector <std::vector <std::string> > mylog;
+
+    int counter = 0;
+    int a;
+
+
+    void writeinmylog(std::string frequency, std::string situation);
+    QString getresult();
+    void getmylog();
+    int count();
+    void gettable();
 };
 
 #endif // HAT_H
