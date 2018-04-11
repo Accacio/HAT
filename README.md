@@ -4,7 +4,7 @@ Hearing Age Test
 ---
 Created in 2013 by:
 
-* Felipe Matheus Oliveira
+* [Felipe Matheus Oliveira](https://github.com/FelipeMFO)
 
 * [Gabriel Pelielo](https://github.com/Pelielo)
 
